@@ -1,0 +1,19 @@
+#loading {
+    background-color: #f3f6fd;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    margin-top: 0px;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    overflow: hidden !important;
+    right: 0px;
+    z-index: 999999; }
+  
+  #loading-center {
+    background: url(../images/loader.gif) no-repeat scroll center center;
+    background-size: 20%;
+    width: 100%;
+    height: 100%;
+    position: relative; }
