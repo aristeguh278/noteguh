@@ -3,8 +3,6 @@ import { PencilMinus } from "tabler-icons-react";
 import { Input, Button, Textarea } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { IconCheck, IconChecklist } from "@tabler/icons-react";
-// import CategoryFormNotes from "../atoms/CategoryFormNotes";
-// import BodyNotes from "./BodyNotes";
 
 class FormNoteInput extends Component {
   constructor(props) {
@@ -84,8 +82,6 @@ class FormNoteInput extends Component {
           style={{ fontSize: "40px" }}
         />
         <span style={{ fontSize: 12, color: "red" }}>{this.state.errorMsg}</span>
-        {/* <CategoryFormNotes /> */}
-        {/* <BodyNotes value={this.state.body} onChange={this.onBodyChangeEventHandler} /> */}
 
         <Button
           style={{ width: "100%", marginTop: "1.5rem" }}

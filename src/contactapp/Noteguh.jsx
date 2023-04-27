@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Loading from "./components/atoms/Loading";
 import CardNotes from "./components/molecues/CardNotes";
 import FormNote from "./components/molecues/SubHeaderNoteguh";
-import { Grid, Container } from "@mantine/core";
+import { Grid, Container, SimpleGrid } from "@mantine/core";
 import HeaderNoteguh from "./components/molecues/HeaderNoteguh";
 import { getDataNotes, showFormattedDate, limitChar } from "./utils/data";
 import Nodata from "./components/molecues/Nodata";
@@ -70,16 +70,15 @@ class Noteguh extends Component {
   }
 
   onSubmitEventHandler({ title, body }) {
+    const date = JSON.stringify(new Date(), null, 2);
+    const createdAt = date.slice(1, -1);
     this.setState((prevState) => {
       return {
-        dataNotes: [
-          ...prevState.dataNotes,
-          { id: +new Date(), title, body, dateTime: +new Date() },
-        ],
+        dataNotes: [...prevState.dataNotes, { id: +new Date(), title, body, createdAt }],
       };
     });
-    console.log("Berhasil menambah data");
-    // this.props.addContact(this.state);
+
+    console.log({ id: +new Date(), title, body, dateTime: new Date() });
   }
 
   render() {
@@ -92,10 +91,17 @@ class Noteguh extends Component {
         <Container>
           <HeaderNoteguh showNote={showNote} onChangeNoteArchive={this.onChangeNoteArchive} />
           <FormNote onSearch={this.onSearchChangeHandler} onSubmit={this.onSubmitEventHandler} />
-          <Grid>
+          <SimpleGrid
+            breakpoints={[
+              { maxWidth: "62rem", cols: 3, spacing: "md" },
+              { maxWidth: "48rem", cols: 2, spacing: "sm" },
+              { maxWidth: "36rem", cols: 1, spacing: "sm" },
+            ]}
+            cols={4}
+            spacing="lg">
             {showNote && dataNotes.length >= 1 ? (
               dataNotes.map((note, index) => (
-                <Grid.Col span={4} key={index}>
+                <div key={index}>
                   <CardNotes
                     id={note.id}
                     {...note}
@@ -104,13 +110,13 @@ class Noteguh extends Component {
                     onDelete={this.onDeleteHandler}
                     onArchive={this.onArchiveHandler}
                   />
-                </Grid.Col>
+                </div>
               ))
             ) : !showNote && dataArchive.length <= 0 ? (
               <Nodata message={"Data Archive Kosong ayo buat"} />
             ) : !showNote && dataNotes.length >= 1 ? (
               dataArchive.map((note, index) => (
-                <Grid.Col span={4} key={index}>
+                <div>
                   <CardNotes
                     id={note.id}
                     {...note}
@@ -120,11 +126,11 @@ class Noteguh extends Component {
                     onDelete={this.onDeleteHandler}
                     onArchive={this.onArchiveHandler}
                   />
-                </Grid.Col>
+                </div>
               ))
             ) : !showNote && dataArchive.length > 0 && dataNotes.length < 1 ? (
               dataArchive.map((note, index) => (
-                <Grid.Col span={4} key={index}>
+                <div>
                   <CardNotes
                     id={note.id}
                     {...note}
@@ -134,12 +140,12 @@ class Noteguh extends Component {
                     onDelete={this.onDeleteHandler}
                     onArchive={this.onArchiveHandler}
                   />
-                </Grid.Col>
+                </div>
               ))
             ) : (
               <Nodata message={"Data Catatan Kosong ayo buat"} />
             )}
-          </Grid>
+          </SimpleGrid>
         </Container>
       </>
     );

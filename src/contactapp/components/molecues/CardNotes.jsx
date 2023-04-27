@@ -38,7 +38,6 @@ const CardNotes = ({
     });
   };
 
-  console.log(showNote);
   return (
     <>
       <Modal
@@ -63,9 +62,6 @@ const CardNotes = ({
       <Card shadow="sm" padding="lg" radius="md" withBorder>
         <Group position="apart" mt="md" mb="xs">
           <Text weight={500}>{title}</Text>
-          {/* <Badge color="pink" variant="light">
-            On Sale
-          </Badge> */}
         </Group>
 
         <Text size="sm" color="dimmed">
