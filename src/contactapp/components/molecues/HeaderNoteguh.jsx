@@ -30,6 +30,7 @@ import {
   IconChevronDown,
 } from "@tabler/icons-react";
 import Logo from "../../images/logo.svg";
+import { Link } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -207,6 +208,7 @@ function HeaderNoteguh({ showNote, onChangeNoteArchive }) {
               onClick={() => onChangeNoteArchive(true)}>
               Notes
             </Button>
+
             <Button
               variant={showNote ? "default" : "filled"}
               onClick={() => onChangeNoteArchive(false)}>

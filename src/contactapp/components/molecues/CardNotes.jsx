@@ -5,6 +5,8 @@ import { notifications } from "@mantine/notifications";
 import { IconCheck, IconAddressBook } from "@tabler/icons-react";
 import ArchiveButton from "../atoms/ArchiveButton";
 import NotesButton from "../atoms/NotesButton";
+import "./card.css";
+import { Link } from "react-router-dom";
 const CardNotes = ({
   createdAt,
   title,
@@ -39,7 +41,7 @@ const CardNotes = ({
   };
 
   return (
-    <>
+    <div>
       <Modal
         opened={slowTransitionOpened}
         onClose={() => setSlowTransitionOpened(false)}
@@ -59,7 +61,7 @@ const CardNotes = ({
       <Card.Section style={{ marginBottom: "1rem", fontWeight: "bold" }}>
         {showFormattedDate(createdAt)}
       </Card.Section>
-      <Card shadow="sm" padding="lg" radius="md" withBorder>
+      <Card className="fancy_card" shadow="sm" padding="lg" radius="md" withBorder>
         <Group position="apart" mt="md" mb="xs">
           <Text weight={500}>{title}</Text>
         </Group>
@@ -68,6 +70,7 @@ const CardNotes = ({
           {limitChar(body, 60)}
         </Text>
         <div
+          className="fancy_card"
           style={{
             display: "flex",
             justifyContent: "flex-start",
@@ -82,9 +85,14 @@ const CardNotes = ({
           ) : (
             <NotesButton id={id} onDelete={onDelete} onArchive={onArchive} />
           )}
+
+          <Link to={`/detail/${id}`}>
+            {" "}
+            <div>Detail</div>
+          </Link>
         </div>
       </Card>
-    </>
+    </div>
   );
 };
 
